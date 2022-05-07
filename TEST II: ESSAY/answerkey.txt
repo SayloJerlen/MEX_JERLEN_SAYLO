@@ -1,12 +1,53 @@
 1. What is the difference of state and props. 
 
-State and props has vast difference from each other due to their nature. Though the two are both plain JS object, can contain default values and are read-only when
-they are used by this. States and props are used for contrasting purposes. For instance, state is a structure that could be updated to keep data and information
-which could change as the time goes by. This "change" could occur as a response to a user's action or system event. One might also call state as the heart of the react
-component wherein it decides how the component will render and behave. It must not be complicated and can be accessed or modified from the inside of component 
-or direclty by it (mutable). Lastly, it can be modified using this.setState.
+State and props has vast difference from each other due to their nature. 
+Though the two are both plain JS object, can contain default values and are read-only whenthey are used by this. 
+States and props are used for contrasting purposes. 
+For instance, state is a structure that could be updated to keep data and information which could change as the time goes by. 
+This "change" could occur as a response to a user's action or system event. 
+One might also call state as the heart of the react component wherein it decides how the component will render and behave. 
+It must not be complicated and can be accessed or modified from the inside of component or direclty by it (mutable). 
+Lastly, it can be modified using this.setState.
 
-On the other hand, props are some form of an uneditable file; has a read-only components just like a PDF would be if not converted into a word file. It is an object used
-for storing value of attributes of a tag and has similarities with the HTML attributes. It allows data passage from one component to another. It is considered immutable,
-meaning, it could not be modified from the inside of component.
+Example:
+function SubtractWithInput(props) {
+  const [n2, setN2] = React.useState(0)
 
+  function handleInputChange(event) {
+    const input = event.target
+    const newN2 = Number(input.value)
+    setN2(newN2)
+  }
+
+  return (
+    <div>
+      {props.n1} -{' '}
+      <input type="number" value={n2} onChange={handleInputChange} /> ={' '}
+      {props.n1 - n2}
+    </div>
+  )
+}
+
+function AddWithInput(props) {
+  const [n2, setN2] = React.useState(props.n2)
+
+  // ... etc...
+}
+
+OUTPUT: __ - __ = ___
+
+On the other hand, props (properties) are some form of an uneditable file; has a read-only components just like a PDF would be if not converted into a word file. 
+It is an object used for storing value of attributes of a tag and has similarities with the HTML attributes. 
+It allows data passage from one component to another. It is considered immutable, meaning, it could not be modified from the inside of component.
+
+Example:
+function Subtract(props) {
+  return (
+    <div>
+      {props.n1} - {props.n2} = {props.n1 - props.n2}
+    </div>
+  )
+}
+
+<Subtract n1={7} n2={1} />
+OUTPUT: 7 - 1 = 6
